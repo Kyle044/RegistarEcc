@@ -66,7 +66,38 @@ return dTableModel;
 	}
 
 
-
+	
+	public boolean Authenticate(String username,String password) {
+		Connection conn = null;
+		boolean isUser = false;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/EccDB","root","1234");
+			Statement sqlState = conn.createStatement();
+			String selectUser = "SELECT * FROM userTBL where username = '"+username+"' and password='"+password+"'";
+			rows = sqlState.executeQuery(selectUser);
+			
+			
+			if(rows.next()) {
+				isUser=true;
+			}
+			else {
+				isUser=false;
+			}
+		
+			
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		catch(ClassNotFoundException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return isUser;
+		
+		
+		
+	}
 	
 	
 	

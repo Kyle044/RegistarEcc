@@ -30,7 +30,7 @@ public class Login extends JFrame implements ActionListener {
 	JPanel container2 = new JPanel();
 	JButton submit = new JButton();
 	JButton register= new JButton();
-	Login() {
+	public Login() {
 		this.setSize(850, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -115,9 +115,11 @@ public class Login extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==submit) {
-			
-			if(username.getText().equals("kyle")&&password.getText().equals("123")) {
+			DatabaseHelper db = new DatabaseHelper();
+			if(db.Authenticate(username.getText(), password.getText())) {
 				System.out.println("Login");
+				this.dispose();
+				Dashboard dash = new Dashboard();
 			}
 			else {
 				System.out.println("Enter The Right Username and Password");

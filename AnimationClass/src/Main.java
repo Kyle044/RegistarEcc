@@ -1,15 +1,9 @@
-import UI.Login;
-
-
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
-		new Login();
-		
-	
+		// TODO Auto-generated method stub
+		new Frame();
 	}
 
 }
